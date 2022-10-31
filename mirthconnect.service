@@ -1,0 +1,16 @@
+[Unit]
+Description=MirthConnect
+After=network.target
+
+[Service]
+Type=forking
+User=root
+Group=root
+ExecStart=/opt/mirthconnect/mcservice start
+ExecStop=/opt/mirthconnect/mcservice stop
+ExecRestart=/opt/mirthconnect/mcservice restart
+
+TimeoutSec=60
+
+[Install]
+WantedBy=multi-user.target
