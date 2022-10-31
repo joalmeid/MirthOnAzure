@@ -1,0 +1,95 @@
+status
+Returns status of deployed channels
+
+deploy [timeout]
+Deploys all Channels with optional timeout (in seconds)
+
+import "path" [force]
+Imports channel specified by <path>.  Optional 'force' overwrites existing channels.
+
+export id|"name"|* "path"
+Exports the specified channel to <path>
+
+importcfg "path" [nodeploy] [overwriteconfigmap]
+Imports configuration specified by <path>.  Optional 'nodeploy' stops channels from being deployed after importing.  Optional 'overwriteconfigmap' will overwrite the Configuration Map.
+
+exportcfg "path"
+Exports the configuration to <path>
+
+importalert "path" [force]
+Imports alert specified by <path>.  Optional 'force' overwrites existing alerts.
+
+exportalert id|"name"|* "path"
+Exports the specified alert to <path>
+
+importscripts "path"
+Imports global script specified by <path>
+
+exportscripts "path"
+Exports global script to <path>
+
+codetemplate library list [includecodetemplates]
+Lists all code template libraries. Optional 'includecodetemplates' additionally lists the code templates within each library.
+
+codetemplate list
+Lists all code templates.
+
+codetemplate [library] import path [force]
+Imports code templates or libraries (with the 'library' option).
+
+codetemplate library export id|name|* path
+Exports all matched code template libraries to <path>.
+
+codetemplate export id|name path
+Exports a single code template to <path>.
+
+codetemplate library remove id|name|*
+Removes all matched code template libraries.
+
+codetemplate remove id|name
+Removes a single code template.
+
+importmessages "path" id
+Imports messages specified by <path> into the channel specified by <id>
+
+exportmessages "path/file-pattern" id [xml|xml-attach|raw|processedraw|transformed|encoded|response] [pageSize]
+Exports all messages for channel specified by <id> to <path>
+
+importmap "path"
+Imports configuration map specified by <path>
+
+exportmap "path"
+Exports configuration map to <path>
+
+channel undeploy|deploy|start|stop|halt|pause|resume|stats id|"name"|*
+Performs specified channel action
+
+channel remove|enable|disable id|"name"|*
+Remove, enable or disable specified channel
+
+channel list
+Lists all Channels
+
+clearallmessages
+Removes all messages from all Channels (running channels will be restarted)
+
+resetstats [lifetime]
+Removes all stats from all Channels. Optional 'lifetime' includes resetting lifetime stats.
+
+dump stats|events "path"
+Dumps stats or events to specified file
+
+user list
+Returns a list of the current users
+
+user add username "password" "firstName" "lastName" "organization" "email"
+Adds the specified user
+
+user remove id|username
+Removes the specified user
+
+user changepw id|username "newpassword"
+Changes the specified user's password
+
+quit
+Quits Mirth Connect Shell

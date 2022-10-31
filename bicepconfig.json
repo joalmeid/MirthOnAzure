@@ -1,0 +1,27 @@
+{
+    // See https://aka.ms/bicep/config for more information on Bicep configuration options
+    // Press CTRL+SPACE/CMD+SPACE at any location to see Intellisense suggestions
+    "analyzers": {
+        "core": {
+            "rules": {
+                "no-unused-params": {
+                    "level": "warning"
+                }
+            }
+        }
+    },
+    "cloud": {
+        "credentialPrecedence": [
+        "AzureCLI",
+        "AzurePowerShell",
+        "VisualStudioCode",
+        "Environment",
+        "ManagedIdentity",
+        "VisualStudio"
+        ]
+    },
+    "moduleAliases": {
+        "ts": {},
+        "br": {}
+    }
+}
