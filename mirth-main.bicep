@@ -22,7 +22,6 @@ var vmEngineName = 'vml-${instancePrefix}mirth'
 var vmClientName = 'vmw-${instancePrefix}mirth'
 var bastionName = 'bst-${instancePrefix}mirth'
 var publicIpBastionName = 'pip-bst-${instancePrefix}mirth'
-// var blobPrivateDnsZoneName = 'pdns-${instancePrefix}mirth'
 
 module mirthNetworking 'mirth-networking.bicep' = {
   name: 'networkingModule'

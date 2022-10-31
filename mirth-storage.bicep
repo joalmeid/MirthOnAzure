@@ -74,33 +74,6 @@ resource storagePrivateEndpointBlob 'Microsoft.Network/privateEndpoints@2022-01-
   }
 }
 
-// resource storagePrivateEndpointFile 'Microsoft.Network/privateEndpoints@2022-01-01' = {
-//   name: storagePleFileName
-//   location: location
-//   tags: tags
-//   properties: {
-//     privateLinkServiceConnections: [
-//       {
-//         name: storagePleFileName
-//         properties: {
-//           groupIds: [
-//             'file'
-//           ]
-//           privateLinkServiceId: storage.id
-//           privateLinkServiceConnectionState: {
-//             status: 'Approved'
-//             description: 'Auto-Approved'
-//             actionsRequired: 'None'
-//           }
-//         }
-//       }
-//     ]
-//     subnet: {
-//       id: subnetId
-//     }
-//   }
-// }
-
 resource blobPrivateDnsZone 'Microsoft.Network/privateDnsZones@2020-06-01' = {
   name: blobPrivateDnsZoneName
   location: 'global'
@@ -132,36 +105,6 @@ resource blobPrivateDnsZoneVnetLink 'Microsoft.Network/privateDnsZones/virtualNe
     }
   }
 }
-
-// resource filePrivateDnsZone 'Microsoft.Network/privateDnsZones@2020-06-01' = {
-//   name: filePrivateDnsZoneName
-//   location: 'global'
-// }
-
-// resource filePrivateEndpointDns 'Microsoft.Network/privateEndpoints/privateDnsZoneGroups@2022-01-01' = {
-//   name: '${storagePrivateEndpointFile.name}/flie-PrivateDnsZoneGroup'
-//   properties:{
-//     privateDnsZoneConfigs: [
-//       {
-//         name: filePrivateDnsZoneName
-//         properties:{
-//           privateDnsZoneId: filePrivateDnsZone.id
-//         }
-//       }
-//     ]
-//   }
-// }
-
-// resource filePrivateDnsZoneVnetLink 'Microsoft.Network/privateDnsZones/virtualNetworkLinks@2020-06-01' = {
-//   name: '${filePrivateDnsZone.name}/${uniqueString(storage.id)}'
-//   location: 'global'
-//   properties: {
-//     registrationEnabled: false
-//     virtualNetwork: {
-//       id: virtualNetworkId
-//     }
-//   }
-// }
       
 output storageAccountId string = storage.id
 output storageUri string = storage.properties.primaryEndpoints.blob
