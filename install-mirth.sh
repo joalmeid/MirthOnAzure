@@ -6,15 +6,13 @@ echo "######### Installing Mirth Connect ${MIRTH_CONNECT_VERSION}"
 # Update Ubuntu
 sudo apt-get update
 
-# Make the ~/downloads folder
-mkdir ~/downloads
-cd ~/downloads/
-
-# Requirements
+## Requirements
 
 # Install the OpenJDK (older versions of Nextgen  required the Oracle Java JDK but that is not a requirement on newer versions of NextGen Connect)
 echo "######### Installing default Ubuntu Java RE"
 sudo apt install default-jre -y
+
+## Mirth Connect
 
 # Download the most up to date Nextgen Connect binnaries. 
 MIRTH_CONNECT_BIN=mirthconnect-${MIRTH_CONNECT_VERSION}-unix # MIRTH CONNECT
@@ -26,6 +24,14 @@ wget https://s3.amazonaws.com/downloads.mirthcorp.com/connect/${MIRTH_CONNECT_VE
 tar xvfz $MIRTH_CONNECT_BIN.tar.gz
 sudo mv Mirth\ Connect/ /opt/mirthconnect
 
-# Enable mcservice servicenano
 echo "######### Starting Mirth Connect ${MIRTH_CONNECT_VERSION} as a service."
+
+# Starting Mirth Connect
+sudo systemctl start mirthconnect
+
+# Enable mcservice servicenano
+mv ./mirthconnect.service /etc/systemd/system/mirthconnect.service
 sudo systemctl enable mirthconnect
+
+# Log Mirth Connect startup
+tail /opt/mirthconnect/logs/mirth.log
