@@ -21,9 +21,9 @@ MIRTH_CONNECT_CLI=mirthconnectcli-${MIRTH_CONNECT_VERSION}-unix # Mirth Connect 
 wget https://s3.amazonaws.com/downloads.mirthcorp.com/connect/${MIRTH_CONNECT_VERSION}/$MIRTH_CONNECT_BIN.tar.gz
 wget https://s3.amazonaws.com/downloads.mirthcorp.com/connect/${MIRTH_CONNECT_VERSION}/$MIRTH_CONNECT_CLI.tar.gz
 
+echo "######### Uncompressing Mirth"
 tar xvfz $MIRTH_CONNECT_BIN.tar.gz
 sudo mv Mirth\ Connect/ /opt/mirthconnect
-
 
 # Starting Mirth Connect
 #sudo systemctl start mirthconnect
@@ -34,6 +34,7 @@ echo "######### Starting Mirth Connect ${MIRTH_CONNECT_VERSION} as a service."
 sudo systemctl status mirthconnect --no-pager
 
 # Enable mcservice servicenano
+echo "######### Enabling Mirth Connect service."
 mv ./mirthconnect.service /etc/systemd/system/mirthconnect.service
 sudo systemctl enable mirthconnect
 
