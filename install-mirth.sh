@@ -28,6 +28,7 @@ echo "######### Starting Mirth Connect ${MIRTH_CONNECT_VERSION} as a service."
 
 # Starting Mirth Connect
 sudo systemctl start mirthconnect
+sudo systemctl status mirthconnect --no-pager
 
 # Enable mcservice servicenano
 mv ./mirthconnect.service /etc/systemd/system/mirthconnect.service
