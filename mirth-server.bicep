@@ -34,6 +34,9 @@ param networkInterfaceName string
 param subnetId string
 param nsgId string
 
+@description('The custom script URI to be deployed as a Custom Script Extension.')
+param mirthInstallScripturl string = 'https://raw.githubusercontent.com/joalmeid/MirthOnAzure/main/install-mirth.sh'
+
 var osDiskType = 'Standard_LRS'
 var linuxConfiguration = {
   disablePasswordAuthentication: true
@@ -109,6 +112,24 @@ resource vm 'Microsoft.Compute/virtualMachines@2021-11-01' = {
         enabled: true
         storageUri: storageUri
       }  
+    }
+  }
+}
+
+resource customscriptextension 'Microsoft.Compute/virtualMachines/extensions@2022-08-01' = {
+  parent: vm
+  name: 'InstallMirth'
+  location:location
+  properties:{
+    publisher: 'Microsoft.Azure.Extensions'
+    type: 'CustomScript'
+    typeHandlerVersion: '2.1'
+    autoUpgradeMinorVersion: true
+    settings: {
+      commandToExecute: 'sh install-mirth.sh > install-mirth.log'
+      fileUris: [
+        mirthInstallScripturl
+      ]
     }
   }
 }
