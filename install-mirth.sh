@@ -24,10 +24,13 @@ wget https://s3.amazonaws.com/downloads.mirthcorp.com/connect/${MIRTH_CONNECT_VE
 tar xvfz $MIRTH_CONNECT_BIN.tar.gz
 sudo mv Mirth\ Connect/ /opt/mirthconnect
 
-echo "######### Starting Mirth Connect ${MIRTH_CONNECT_VERSION} as a service."
 
 # Starting Mirth Connect
-sudo systemctl start mirthconnect
+#sudo systemctl start mirthconnect
+echo "######### Starting Mirth Connect ${MIRTH_CONNECT_VERSION}."
+/opt/mirthconnect/mcservice start
+
+echo "######### Starting Mirth Connect ${MIRTH_CONNECT_VERSION} as a service."
 sudo systemctl status mirthconnect --no-pager
 
 # Enable mcservice servicenano
