@@ -26,17 +26,11 @@ tar xvfz $MIRTH_CONNECT_BIN.tar.gz
 sudo mv Mirth\ Connect/ /opt/mirthconnect
 
 # Starting Mirth Connect
-#sudo systemctl start mirthconnect
 echo "######### Starting Mirth Connect ${MIRTH_CONNECT_VERSION}."
-/opt/mirthconnect/mcservice start
+sudo systemctl start mirthconnect 
 
-echo "######### Starting Mirth Connect ${MIRTH_CONNECT_VERSION} as a service."
-sudo systemctl status mirthconnect --no-pager
-
-# Enable mcservice servicenano
-echo "######### Enabling Mirth Connect service."
-mv ./mirthconnect.service /etc/systemd/system/mirthconnect.service
+echo "######### Enabling Mirth Connect ${MIRTH_CONNECT_VERSION} as a service."
+wget https://raw.githubusercontent.com/joalmeid/MirthOnAzure/main/mirthconnect.service
+sudo mv ./mirthconnect.service /etc/systemd/system/mirthconnect.service
 sudo systemctl enable mirthconnect
-
-# Log Mirth Connect startup
-tail /opt/mirthconnect/logs/mirth.log
+sudo systemctl status mirthconnect --no-pager
