@@ -32,7 +32,7 @@ var osDiskType = 'Standard_LRS'
 param storageUri string
 
 @description('The custom script URI to be deployed as a Custom Script Extension.')
-param mirthAdminInstallScriptUrl string = 'https://raw.githubusercontent.com/joalmeid/MirthOnAzure/main/install-mirth.admin.ps1'
+param mirthAdminInstallScriptUrl string = 'https://raw.githubusercontent.com/joalmeid/MirthOnAzure/main/install-mirth-admin.ps1'
 
 resource nic 'Microsoft.Network/networkInterfaces@2021-02-01' = {
   name: networkInterfaceName
@@ -112,12 +112,12 @@ resource customscriptextension 'Microsoft.Compute/virtualMachines/extensions@202
   name: 'InstallMirth'
   location:location
   properties:{
-    publisher: 'Microsoft.Azure.Extensions'
-    type: 'CustomScript'
-    typeHandlerVersion: '2.1'
+    publisher: 'Microsoft.Compute'
+    type: 'CustomScriptExtension'
+    typeHandlerVersion: '1.10'
     autoUpgradeMinorVersion: true
     settings: {
-      commandToExecute: 'powershell.exe install-mirth-admin.ps1'
+      commandToExecute: 'powershell.exe -ExecutionPolicy Bypass -File install-mirth-admin.ps1'
       fileUris: [
         mirthAdminInstallScriptUrl
       ]
