@@ -31,6 +31,9 @@ var osDiskType = 'Standard_LRS'
 @description('Diagnostics Blob Uri.')
 param storageUri string
 
+@description('The custom script URI to be deployed as a Custom Script Extension.')
+param mirthAdminInstallScriptUrl string = 'https://raw.githubusercontent.com/joalmeid/MirthOnAzure/main/install-mirth.admin.ps1'
+
 resource nic 'Microsoft.Network/networkInterfaces@2021-02-01' = {
   name: networkInterfaceName
   location: location
@@ -104,6 +107,23 @@ resource vm 'Microsoft.Compute/virtualMachines@2021-03-01' = {
   }
 }
 
+resource customscriptextension 'Microsoft.Compute/virtualMachines/extensions@2022-08-01' = {
+  parent: vm
+  name: 'InstallMirth'
+  location:location
+  properties:{
+    publisher: 'Microsoft.Azure.Extensions'
+    type: 'CustomScript'
+    typeHandlerVersion: '2.1'
+    autoUpgradeMinorVersion: true
+    settings: {
+      commandToExecute: 'powershell.exe install-mirth-admin.ps1'
+      fileUris: [
+        mirthAdminInstallScriptUrl
+      ]
+    }
+  }
+}
 
 output vmId string = vm.id
 
