@@ -35,7 +35,7 @@ param subnetId string
 param nsgId string
 
 @description('The custom script URI to be deployed as a Custom Script Extension.')
-param mirthInstallScripturl string = 'https://raw.githubusercontent.com/joalmeid/MirthOnAzure/main/install-mirth.sh'
+param mirthInstallScripturl string = 'https://raw.githubusercontent.com/joalmeid/MirthOnAzure/main/config/install-mirth.sh'
 
 var osDiskType = 'Standard_LRS'
 var linuxConfiguration = {

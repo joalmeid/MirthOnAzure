@@ -32,7 +32,7 @@ var osDiskType = 'Standard_LRS'
 param storageUri string
 
 @description('The custom script URI to be deployed as a Custom Script Extension.')
-param mirthAdminInstallScriptUrl string = 'https://raw.githubusercontent.com/joalmeid/MirthOnAzure/main/install-mirth-admin.ps1'
+param mirthAdminInstallScriptUrl string = 'https://raw.githubusercontent.com/joalmeid/MirthOnAzure/main/config/install-mirth-admin.ps1'
 
 resource nic 'Microsoft.Network/networkInterfaces@2021-02-01' = {
   name: networkInterfaceName
